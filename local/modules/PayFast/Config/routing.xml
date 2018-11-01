@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="payfast.configure" path="/admin/module/payfast/configure" methods="post">
+        <default key="_controller">PayFast\Controller\ConfigurationController::configure</default>
+    </route>
+
+    <route id="payfast.payment.confirmation" path="payfast/callback" methods="post">
+        <default key="_controller">PayFast\Controller\PaymentController::processPayFastRequest</default>
+    </route>
+    
+</routes>

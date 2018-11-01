@@ -1,0 +1,77 @@
+{if isset($smarty.get.errmes) && !empty($smarty.get.errmes)}
+     <div class="alert alert-danger">
+         {$smarty.get.errmes}
+     </div>
+{/if}
+
+<div class="row">
+   <!-- <div class="col-md-12 general-block-decorator">-->
+
+        <head><link href="{url file="../local/modules/PayFast/payfast_styles.css"}" rel='stylesheet' type='text/css' /></head>
+       
+        <div class="col-md-12" id="pf__content">
+            <div id="content" class="config__pf">  
+            <div class="pf__header">
+                <a href="https://www.payfast.co.za" target="_blank">
+                    <img class="pf__logo" src="{url file="../local/modules/PayFast/images/payFast-logo-2-colour.svg"}" alt="PayFast" boreder="0" />
+                </a>
+                    <span>Online Secure Payments</span>
+            </div>
+
+            <div class="divider divider__longer"></div>
+
+            <div class="form-container general-block-decorator">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        {form name="payfast.configuration.form"}
+
+                            <form action="{url path="/admin/module/payfast/configure"}" method="post">
+
+                                <div class="pf__main--section" id="main__section">
+
+                                {include
+                                    file = "includes/inner-form-toolbar.html"
+                                    hide_submit_buttons = false
+
+                                    page_url  = {url path="/admin/module/payfast"}
+                                    close_url = {url path="/admin/modules"}
+                                }
+
+                                {form_hidden_fields}
+
+                                {if $form_error}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="alert alert-danger">{$form_error_message}</div>
+                                        </div>
+                                    </div>
+                                {/if}
+
+                                {loop type="module-config" name="get-mode" module="PayFast" variable="mode"}
+                                    {render_form_field field="mode" value=$VALUE}
+                                {/loop}
+
+                                {loop type="module-config" name="get-merchant-id" module="PayFast" variable="merchant_id"}
+                                    {render_form_field field="merchant_id" value=$VALUE}
+                                {/loop}
+                                {loop type="module-config" name="get-merchant-key" module="PayFast" variable="merchant_key"}
+                                    {render_form_field field="merchant_key" value=$VALUE}
+                                {/loop}
+                                {loop type="module-config" name="get-passphrase" module="PayFast" variable="passphrase"}
+                                    {render_form_field field="passphrase" value=$VALUE}
+                                {/loop}
+                                {loop type="module-config" name="get-debug" module="PayFast" variable="debug"}
+                                    {render_form_field field="debug" value=$VALUE}
+                                {/loop} 
+
+                                </div>
+
+                             </form>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
